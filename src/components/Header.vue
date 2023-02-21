@@ -12,7 +12,7 @@ export default defineComponent({
 
 <template>
   <header>
-    <h1>Min hobby</h1>
+    <img src="../assets/logo-transparent-cropped.png" alt="Elbas" height="77">
     <nav>
       <ul>
         <li><RouterLink to="/">Home</RouterLink></li>
