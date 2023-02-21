@@ -13,7 +13,7 @@ console.log('Hej');
 <style scoped lang="scss">
 @import './style/variables';
 main {
-  height: calc(100vh - $header-height);
+  min-height: calc(100vh - $header-height);
   background-color: $yellow;
 }
 </style>
