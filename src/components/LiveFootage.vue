@@ -12,7 +12,7 @@ export default defineComponent({
 
 <template>
   <div>
-
+    <h2>Live footage page</h2>
   </div>
 </template>
 
