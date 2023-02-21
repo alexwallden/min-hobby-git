@@ -26,12 +26,12 @@ export default defineComponent({
 @import '../style/variables';
 
 header {
+  height: 80px;
   background-color: $green;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 0 20px;
-
 }
 h1 {
   display: flex;
@@ -47,5 +47,18 @@ ul {
   list-style: none;
   justify-content: space-around;
   font-size: 1.5rem;
+}
+
+a {
+  color: $yellow;
+  text-decoration: none;
+
+  &:visited {
+    color: $red;
+  }
+
+  &:hover {
+    color: $yellow;
+  }
 }
 </style>

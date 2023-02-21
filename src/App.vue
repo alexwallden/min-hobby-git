@@ -11,6 +11,9 @@ console.log('Hej');
 </template>
 
 <style scoped lang="scss">
-
-
+@import './style/variables';
+main {
+  height: calc(100vh - $header-height);
+  background-color: $yellow;
+}
 </style>
