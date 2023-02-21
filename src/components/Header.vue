@@ -11,7 +11,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div>
+  <header>
     <h1>Min hobby</h1>
     <nav>
       <ul>
@@ -19,11 +19,33 @@ export default defineComponent({
         <li><RouterLink to="/live-footage">Live footage</RouterLink></li>
       </ul>
     </nav>
-  </div>
+  </header>
 </template>
 
 <style scoped lang="scss">
+@import '../style/variables';
+
+header {
+  background-color: $green;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 20px;
+
+}
+h1 {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+nav {
+  width: 50%;
+}
 ul {
+  padding: 0;
+  display: flex;
   list-style: none;
+  justify-content: space-around;
+  font-size: 1.5rem;
 }
 </style>
