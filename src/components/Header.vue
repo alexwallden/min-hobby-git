@@ -13,9 +13,8 @@ export default defineComponent({
       <h1>Min hobby</h1>
       <nav>
         <ul>
-          <li>Start</li>
-          <li>Elbasen</li>
-          <li>Musiken</li>
+          <li>Home</li>
+          <li>Live footage</li>
         </ul>
       </nav>
     </div>
