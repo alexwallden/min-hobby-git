@@ -41,7 +41,7 @@ export default defineComponent({
         <figcaption>
           ...och här är en bild på en <strong>femsträngad</strong> bas. Om det är svårt att räkna
           strängarna kan det vara enklare att räkna stämskruvarna som är de
-          skruvarna som sticker ut från basens <strong>huvud</strong>
+          skruvar som sticker ut från basens <strong>huvud</strong>
         </figcaption>
       </figure>
     </div>
