@@ -17,6 +17,7 @@ export default defineComponent({
       <ul>
         <li><RouterLink to="/">Home</RouterLink></li>
         <li><RouterLink to="/live-footage">Live footage</RouterLink></li>
+        <li><RouterLink to="/bass-types">Types of basses</RouterLink></li>
       </ul>
     </nav>
   </header>
