@@ -1,61 +1,98 @@
 <script lang="ts">
-import { getBaseTransformPreset } from '@vue/compiler-core';
-import jazzBassImg from '../assets/jazz-bass.jpeg';
-import precisionBassImg from '../assets/precision-bass.jpeg';
 import { Bass } from '../models/Bass';
-import { ref } from 'vue';
+import bassData from '../assets/basses.json';
+import { nextTick } from '@vue/runtime-dom';
 export default {
   data() {
     return {
-      basses: [
-        new Bass('Jazz bass', jazzBassImg),
-        new Bass('Precision bass', precisionBassImg),
-      ],
+      basses: [] as Bass[],
       slideshowIndex: 0,
       dots: [] as HTMLSpanElement[],
+      bassesInPlace: false,
     };
   },
   methods: {
-    goLeft() {
+    prevImg() {
+      this.toggleShowImg();
       if (this.slideshowIndex > 0) {
         this.slideshowIndex--;
       } else {
         this.slideshowIndex = this.basses.length - 1;
       }
-      this.selectDot()
+      this.selectDot();
+      this.toggleShowImg();
     },
-    goRight() {
+    nextImg() {
+      this.toggleShowImg();
       if (this.slideshowIndex !== this.basses.length - 1) {
         this.slideshowIndex++;
       } else {
         this.slideshowIndex = 0;
       }
-      this.selectDot()
+      this.selectDot();
+      this.toggleShowImg();
     },
     setDots() {
-      this.dots = this.$refs.dots as HTMLSpanElement[];
-      this.dots[0].classList.add('filled-dot');
+      const dots = this.$refs.dots as HTMLSpanElement[] | undefined;
+      if (dots) {
+        this.dots = dots;
+        this.dots[0].classList.add('filled-dot');
+      }
     },
     selectDot() {
-      this.dots.forEach((dot) => {
-        dot.classList.remove('filled-dot');
+      if (this.dots) {
+        this.dots.forEach((dot) => {
+          dot.classList.remove('filled-dot');
+        });
+        this.dots[this.slideshowIndex].classList.add('filled-dot');
+      }
+    },
+    setBasses() {
+      bassData.forEach((bass) => {
+        this.basses.push(new Bass(bass.name, bass.img, bass.description));
       });
-      this.dots[this.slideshowIndex].classList.add('filled-dot');
+    },
+    wait(timeInMilliseconds: number): Promise<void> {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve();
+        }, timeInMilliseconds);
+      });
+    },
+    toggleShowImg() {
+      this.wait(2).then(() => {
+        (this.$refs.bassImg as HTMLImageElement).classList.toggle(
+          'show-bass-img'
+        );
+      });
     },
   },
   mounted() {
-    this.setDots();
+    this.setBasses();
+    this.bassesInPlace = true;
+    nextTick(() => {
+      (this.$refs.bassImg as HTMLImageElement).classList.add('show-bass-img');
+      this.setDots();
+    });
   },
 };
 </script>
 <template>
-  <div>
-    <img :src="basses[slideshowIndex].img" alt="" height="200" />
+  <div v-if="bassesInPlace === true">
+    <img
+      v-if="bassesInPlace === true"
+      :src="basses[slideshowIndex].img"
+      alt=""
+      height="200"
+      class="bass-img"
+      ref="bassImg"
+    />
+    <p>{{ basses[slideshowIndex].description }}</p>
     <div class="dots-container">
       <span v-for="(bass, index) in basses" ref="dots" class="dots"></span>
     </div>
-    <button @click="goLeft">&lt;</button>
-    <button @click="goRight">></button>
+    <button @click="prevImg">&lt;</button>
+    <button @click="nextImg">></button>
   </div>
 </template>
 
@@ -73,5 +110,13 @@ export default {
 }
 .filled-dot {
   background-color: gray;
+}
+.bass-img {
+  opacity: 0;
+  transition: none;
+}
+.show-bass-img {
+  opacity: 1;
+  transition: opacity 1s;
 }
 </style>

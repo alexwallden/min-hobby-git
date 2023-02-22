@@ -1,0 +1,12 @@
+[
+    {
+      "name": "Jazz Bass",
+      "img": "src/assets/jazz-bass.jpeg",
+      "description": "En jazzbas av märket Fender. Jazzbasen har två mickar, en nära halsen och en nära stallet"
+    },
+    {
+      "name": "Precision Bass",
+      "img": "src/assets/precision-bass.jpeg",
+      "description": "En precisionbas av märket Fender. Precisionbasen har två mickar som sitter ihop nära halsen"
+    }
+  ]
