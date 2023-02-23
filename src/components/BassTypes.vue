@@ -142,7 +142,7 @@ button {
   font-size: 2.5rem;
   background-color: transparent;
   border: none;
-  -webkit-text-stroke: 3px $green;
+  -webkit-text-stroke: 3px $primary;
   cursor: pointer;
 }
 .prev-btn {

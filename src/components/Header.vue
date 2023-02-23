@@ -28,7 +28,7 @@ export default defineComponent({
 
 header {
   height: 80px;
-  background-color: $green;
+  background-color: $primary;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -51,15 +51,15 @@ ul {
 }
 
 a {
-  color: $yellow;
+  color: $secondary;
   text-decoration: none;
 
   &:visited {
-    color: $red;
+    color: $secondary;
   }
 
   &:hover {
-    color: $yellow;
+    color: $secondary;
   }
 }
 </style>

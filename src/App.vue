@@ -14,6 +14,6 @@ console.log('Hej');
 @import './style/variables';
 main {
   min-height: calc(100vh - $header-height);
-  background-color: $yellow;
+  background-color: $secondary;
 }
 </style>
