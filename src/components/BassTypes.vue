@@ -12,8 +12,8 @@ export default {
     };
   },
   methods: {
-    prevImg() {
-      this.toggleShowImg();
+    async prevImg() {
+      await this.toggleShowImg();
       if (this.slideshowIndex > 0) {
         this.slideshowIndex--;
       } else {
@@ -22,8 +22,8 @@ export default {
       this.selectDot();
       this.toggleShowImg();
     },
-    nextImg() {
-      this.toggleShowImg();
+    async nextImg() {
+      await this.toggleShowImg();
       if (this.slideshowIndex !== this.basses.length - 1) {
         this.slideshowIndex++;
       } else {
@@ -52,18 +52,14 @@ export default {
         this.basses.push(new Bass(bass.name, bass.img, bass.description));
       });
     },
-    wait(timeInMilliseconds: number): Promise<void> {
+    toggleShowImg(): Promise<void> {
       return new Promise((resolve) => {
         setTimeout(() => {
+          (this.$refs.bassImg as HTMLImageElement).classList.toggle(
+            'show-bass-img'
+          );
           resolve();
-        }, timeInMilliseconds);
-      });
-    },
-    toggleShowImg() {
-      this.wait(2).then(() => {
-        (this.$refs.bassImg as HTMLImageElement).classList.toggle(
-          'show-bass-img'
-        );
+        }, 10);
       });
     },
   },
@@ -77,46 +73,83 @@ export default {
   },
 };
 </script>
+
 <template>
   <div v-if="bassesInPlace === true">
-    <img
-      v-if="bassesInPlace === true"
-      :src="basses[slideshowIndex].img"
-      alt=""
-      height="200"
-      class="bass-img"
-      ref="bassImg"
-    />
-    <p>{{ basses[slideshowIndex].description }}</p>
-    <div class="dots-container">
-      <span v-for="(bass, index) in basses" ref="dots" class="dots"></span>
+    <div class="bass-container">
+      <h2>{{basses[slideshowIndex].name}}</h2>
+      <img
+        v-if="bassesInPlace === true"
+        :src="basses[slideshowIndex].img"
+        alt=""
+        class="bass-img"
+        ref="bassImg"
+      />
+    <button @click="prevImg" class="prev-btn">&lt;</button>
+    <button @click="nextImg" class="next-btn">></button>
+      <div class="dots-container">
+        <span v-for="(bass, index) in basses" ref="dots" class="dots"></span>
+      </div>
+      <p>{{ basses[slideshowIndex].description }}</p>
     </div>
-    <button @click="prevImg">&lt;</button>
-    <button @click="nextImg">></button>
   </div>
 </template>
 
 <style lang="scss" scoped>
+@import '../style/variables';
+.bass-container {
+  position: relative;
+  padding: 10px;
+}
 .dots-container {
+  position: relative;
+  top: -20px;
+  width: 100%;
   display: flex;
+  gap: 2px;
   flex-direction: row;
+  justify-content: center;
 }
 .dots {
   display: block;
-  height: 40px;
-  width: 40px;
+  height: 10px;
+  width: 10px;
   border-radius: 50%;
-  border: 2px solid black;
+  border: 0.5px solid black;
 }
 .filled-dot {
   background-color: gray;
 }
+
+h2 { 
+  padding: 10px;
+}
 .bass-img {
+  width: 100%;
+  //height: 225px;
   opacity: 0;
   transition: none;
 }
 .show-bass-img {
   opacity: 1;
   transition: opacity 1s;
+}
+
+button {
+  position: absolute;
+  top: 112px;
+  font-weight: bold;
+  font-size: 2.5rem;
+  background-color: transparent;
+  border: none;
+  -webkit-text-stroke: 3px $green;
+  cursor: pointer;
+}
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
 }
 </style>

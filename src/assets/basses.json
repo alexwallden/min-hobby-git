@@ -1,12 +1,17 @@
 [
     {
-      "name": "Jazz Bass",
+      "name": "Jazzbas",
       "img": "src/assets/jazz-bass.jpeg",
       "description": "En jazzbas av märket Fender. Jazzbasen har två mickar, en nära halsen och en nära stallet"
     },
     {
-      "name": "Precision Bass",
+      "name": "Precisionbas",
       "img": "src/assets/precision-bass.jpeg",
       "description": "En precisionbas av märket Fender. Precisionbasen har två mickar som sitter ihop nära halsen"
+    },
+    {
+      "name": "Bandlös, vänsterhänt bas",
+      "img": "src/assets/fretless-bass.jpeg",
+      "description": "En bandlös bas är en bas som saknar bandstavar på halsen vilket gör att man inte är begränsad till att förflytta sig i halva tonsteg när man flyttar vänsterhanden utan man kan även ta toner som ligger emellan halvtonerna, precis som det fungerar på en fiol. En nackdel med detta är att man måste intonera vilket betyder att man måste sätta fingret på exakt rätt plats för att få en ren ton."
     }
   ]
